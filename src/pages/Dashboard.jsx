@@ -28,6 +28,7 @@ const Dashboard = () => {
     );
     setFilteredData(filtered);
   }, [search, data]);
+
   return (
     <>
       <div>Dashboard</div>
