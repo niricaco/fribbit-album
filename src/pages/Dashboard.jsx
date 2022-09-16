@@ -6,15 +6,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { data, getData, setSelectedImage } = useDetails();
   const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const nav = (path) => {
     navigate(path);
   };
-
-  // filter data based on search
-  const filteredData = data.filter((pic) =>
-    pic.title.toLowerCase().includes(search.toLowerCase())
-  );
 
   const clickedImage = (id) => {
     setSelectedImage(id);
@@ -25,6 +21,13 @@ const Dashboard = () => {
     getData();
   }, []);
 
+  // filter data based on search
+  useEffect(() => {
+    const filtered = data.filter((pic) =>
+      pic.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [search, data]);
   return (
     <>
       <div>Dashboard</div>
